@@ -9,7 +9,7 @@ export default function Home() {
 
   return (
     <>
-      <div className="w-full h-screen flex">
+      <div className="w-full h-screen flex" id="landing">
         <div className="container m-auto text-center text-white">
           <h1 className="md:text-6xl sm:text-4xl text-3xl">Welcome, my name is <span className="text-[#D43D3D]">Stephen Ditta</span></h1>
           <div>

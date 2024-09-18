@@ -31,12 +31,14 @@ export default function NavBar() {
     <>
         
         <div className={`w-full h-20 bg-[#202020] flex flex-nowrap items-center ${scrollPosition >= height && isLoaded ? "fixed top-0" : `absolute top-[${height}px]`}`}>
-            <FaSdCard className="flex-none basis-1/4" />
+            <Link href={"#landing"} className="flex basis-1/4 justify-center" >
+                <FaSdCard />
+            </Link>
             <div className="flex basis-3/4 h-full items-center justify-evenly">
-                <h1 className="hover:text-[#D43D3D] hover:cursor-pointer md:text-xl sm:text-base text-xs flex h-full items-center">About Me</h1>
-                <h1 className="hover:text-[#D43D3D] hover:cursor-pointer md:text-xl sm:text-base text-xs flex h-full items-center">Skills</h1>
-                <h1 className="hover:text-[#D43D3D] hover:cursor-pointer md:text-xl sm:text-base text-xs flex h-full items-center">Projects</h1>
-                <h1 className="hover:text-[#D43D3D] hover:cursor-pointer md:text-xl sm:text-base text-xs flex h-full items-center">Contact</h1>
+                <Link href={"#about"} className="hover:text-[#D43D3D] hover:cursor-pointer md:text-xl sm:text-base text-xs flex h-full items-center">About Me</Link>
+                <Link href={"#skills"} className="hover:text-[#D43D3D] hover:cursor-pointer md:text-xl sm:text-base text-xs flex h-full items-center">Skills</Link>
+                <Link href={"#"} className="hover:text-[#D43D3D] hover:cursor-pointer md:text-xl sm:text-base text-xs flex h-full items-center">Projects</Link>
+                <Link href={"#"} className="hover:text-[#373434] hover:cursor-pointer md:text-xl sm:text-base text-xs flex h-full items-center">Contact</Link>
                 <FaGithub className="hover:text-[#D43D3D] hover:cursor-pointer md:text-xl sm:text-base text-xs flex h-full items-center" />
                 <CiLinkedin className="hover:text-[#D43D3D] hover:cursor-pointer md:text-xl sm:text-base text-xs flex h-full items-center" />
             </div>
