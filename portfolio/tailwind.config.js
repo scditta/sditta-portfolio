@@ -14,4 +14,5 @@ module.exports = {
     },
   },
   plugins: [],
+  safelist: ["basis-1/2", "basis-1/3", "basis-1/4"],
 };
