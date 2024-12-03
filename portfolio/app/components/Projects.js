@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 // L, L || M, M, M || S, S, S || S, L, S ||
 const projects = [
@@ -49,6 +49,13 @@ const projects = [
 ];
 
 export default function Projects() {
+  const router = useRouter();
+
+  const handleClick = (id) => {
+    // console.log(`/project-${id + 1}`);
+    router.push(`/project-${id + 1}`);
+  };
+
   const projectPrio = (prio) => {
     switch (prio.toUpperCase()) {
       case "L":
@@ -66,7 +73,7 @@ export default function Projects() {
   return (
     <section id="projects">
       <div className="w-full h-screen">
-        <h1 className="text-center pt-56 md:text-5xl sm:text-3xl text-xl">
+        <h1 className="text-center pt-20 md:text-5xl sm:text-3xl text-xl">
           Projects
         </h1>
         <div className="flex flex-wrap justify-center mt-20 mx-20 text-center">
@@ -76,7 +83,8 @@ export default function Projects() {
                 key={project.id}
                 className={`h-52 basis-${projectPrio(
                   project.prio
-                )} border border-[#714545] hover:bg-[#714545]`}
+                )} border border-[#714545] hover:bg-[#714545] cursor-pointer`}
+                onClick={() => handleClick(project.id)}
               >
                 <img src={project.image} />
                 <div className="">{project.name}</div>

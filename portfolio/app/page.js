@@ -10,7 +10,7 @@ import Contact from "./components/Contact";
 export default function Home() {
   return (
     <>
-      <div className="w-full h-screen flex" id="landing">
+      <div className="w-full h-screen flex" id="">
         <div className="container m-auto text-center text-white">
           <h1 className="md:text-6xl sm:text-4xl text-3xl">
             Welcome, my name is{" "}
@@ -36,6 +36,7 @@ export default function Home() {
           </div>
         </div>
       </div>
+      {/* look into parallel-routes https://nextjs.org/docs/app/building-your-application/routing/parallel-routes */}
       <NavBar />
       <AboutMe />
       <Skills />
