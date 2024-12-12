@@ -1,59 +1,15 @@
 "use client";
-
 import { useRouter } from "next/navigation";
 
-// L, L || M, M, M || S, S, S || S, L, S ||
-const projects = [
-  {
-    id: 0,
-    name: "Project1",
-    skills: ["React", "BootStrap"],
-    image: "...",
-    prio: "L",
-  },
-  {
-    id: 1,
-    name: "Project2",
-    skills: ["React", "BootStrap"],
-    image: "...",
-    prio: "S",
-  },
-  {
-    id: 2,
-    name: "Project3",
-    skills: ["React", "BootStrap"],
-    image: "...",
-    prio: "S",
-  },
-  {
-    id: 3,
-    name: "Project4",
-    skills: ["React", "BootStrap"],
-    image: "...",
-    prio: "S",
-  },
-  {
-    id: 4,
-    name: "Project5",
-    skills: ["React", "BootStrap"],
-    image: "...",
-    prio: "L",
-  },
-  {
-    id: 5,
-    name: "Project6",
-    skills: ["React", "BootStrap"],
-    image: "...",
-    prio: "S",
-  },
-];
+import projects from "@/projectData/projects";
+import Image from "next/image";
 
 export default function Projects() {
   const router = useRouter();
 
   const handleClick = (id) => {
     // console.log(`/project-${id + 1}`);
-    router.push(`/project-${id + 1}`);
+    router.push(`project/${id + 1}`);
   };
 
   const projectPrio = (prio) => {
@@ -62,10 +18,10 @@ export default function Projects() {
         return "1/2";
         break;
       case "M":
-        return "1/3";
+        return "1/4";
         break;
       case "S":
-        return "1/4";
+        return "1/6";
         break;
     }
   };
@@ -81,15 +37,42 @@ export default function Projects() {
             return (
               <div
                 key={project.id}
-                className={`h-52 basis-${projectPrio(
+                className={`h-96 basis-${projectPrio(
                   project.prio
-                )} border border-[#714545] hover:bg-[#714545] cursor-pointer`}
+                )} border-[#714545] cursor-pointer group relative z-1`}
                 onClick={() => handleClick(project.id)}
               >
-                <img src={project.image} />
-                <div className="">{project.name}</div>
-                <div>{project.skills.join(", ")}</div>
+                <Image
+                  src={project.image}
+                  alt={project.name}
+                  fill={true}
+                  className="object-cover absolute z-2"
+                />
+                <div className="w-full h-full relative z-3">
+                  <div className="absolute w-full h-full flex items-center">
+                    <h1 className="z-3 w-full transition text-center text-xl font-bold group-hover:underline">
+                      {project.name}
+                    </h1>
+                    {/* <div className="z-3 w-full transition text-center text-base basis-1/2">
+                      {project.skills.join(", ")}
+                    </div> */}
+                  </div>
+                  <div className="bg-[#1f1f1fbe] w-full h-full block group-hover:bg-[#111111ca]"></div>
+                </div>
               </div>
+              //   <Image
+              //   src={project.image}
+              //   alt={project.name}
+              //   // fill={true}
+              //   className="object-cover"
+              // />
+              // <div className="relative transition">{project.name}</div>
+              // {/* <div className="relative hidden text-lg group-hover:block transition ease-in-out delay-150 group-hover:text-xl duration-300">
+              //   {project.name}
+              // </div> */}
+              // <div className="relative hidden group-hover:block">
+              //   {project.skills.join(", ")}
+              // </div>
             );
           })}
         </div>

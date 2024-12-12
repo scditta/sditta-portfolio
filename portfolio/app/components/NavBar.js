@@ -36,7 +36,7 @@ export default function NavBar() {
           (scrollPosition >= height) & isLoaded
             ? "fixed top-0"
             : `absolute top-[${height}px]`
-        }`}
+        } z-10`}
       >
         <Link href="/#" className="flex basis-1/4 justify-center">
           <FaSdCard />
