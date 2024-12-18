@@ -42,12 +42,15 @@ export default function Projects() {
                 )} border-[#714545] cursor-pointer group relative z-1`}
                 onClick={() => handleClick(project.id)}
               >
-                <Image
-                  src={project.image}
-                  alt={project.name}
-                  fill={true}
-                  className="object-cover absolute z-2"
-                />
+                {project?.image && (
+                  <Image
+                    src={project?.image[0]}
+                    alt={project.name}
+                    fill={true}
+                    className="object-cover absolute z-2"
+                  />
+                )}
+
                 <div className="w-full h-full relative z-3">
                   <div className="absolute w-full h-full flex items-center">
                     <h1 className="z-3 w-full transition text-center text-xl font-bold group-hover:underline">

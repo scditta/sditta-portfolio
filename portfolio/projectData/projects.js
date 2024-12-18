@@ -1,4 +1,5 @@
 import ROS_Image from "./images/ROS_Image.jpg";
+import LINNY from "./images/Linny.png";
 
 const projects = [
   {
@@ -12,7 +13,7 @@ const projects = [
       "NoSQL (MongoDB)",
       "Bcrypt",
     ],
-    image: ROS_Image,
+    image: [ROS_Image, LINNY, ROS_Image, ROS_Image, ROS_Image],
     links: [
       {
         src: "https://restaurantorderingsystem.netlify.app/",
@@ -35,7 +36,7 @@ const projects = [
     id: 1,
     name: "Project2",
     skills: ["React Native", "Google Firebase"],
-    image: ROS_Image,
+    image: [ROS_Image],
     links: ["https://restaurantorderingsystem.netlify.app/"],
     body: "",
     video: null,
@@ -45,7 +46,7 @@ const projects = [
     id: 2,
     name: "Project3",
     skills: ["React", "BootStrap"],
-    image: ROS_Image,
+    image: [ROS_Image],
     prio: "S",
   },
   // {
