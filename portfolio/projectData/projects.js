@@ -1,5 +1,6 @@
 import ROS_Image from "./images/ROS_Image.jpg";
 import LINNY from "./images/Linny.png";
+import GreenGrass from "./images/GreenGrass.jpg";
 
 const projects = [
   {
@@ -13,7 +14,7 @@ const projects = [
       "NoSQL (MongoDB)",
       "Bcrypt",
     ],
-    image: [ROS_Image, LINNY, ROS_Image, ROS_Image, ROS_Image],
+    image: [ROS_Image, LINNY, GreenGrass, ROS_Image, ROS_Image],
     links: [
       {
         src: "https://restaurantorderingsystem.netlify.app/",
