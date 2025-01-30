@@ -56,26 +56,10 @@ export default function Projects() {
                     <h1 className="z-3 w-full transition text-center text-xl font-bold group-hover:underline">
                       {project.name}
                     </h1>
-                    {/* <div className="z-3 w-full transition text-center text-base basis-1/2">
-                      {project.skills.join(", ")}
-                    </div> */}
                   </div>
                   <div className="bg-[#1f1f1fbe] w-full h-full block group-hover:bg-[#111111ca]"></div>
                 </div>
               </div>
-              //   <Image
-              //   src={project.image}
-              //   alt={project.name}
-              //   // fill={true}
-              //   className="object-cover"
-              // />
-              // <div className="relative transition">{project.name}</div>
-              // {/* <div className="relative hidden text-lg group-hover:block transition ease-in-out delay-150 group-hover:text-xl duration-300">
-              //   {project.name}
-              // </div> */}
-              // <div className="relative hidden group-hover:block">
-              //   {project.skills.join(", ")}
-              // </div>
             );
           })}
         </div>

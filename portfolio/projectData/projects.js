@@ -29,7 +29,7 @@ const projects = [
         type: "GitHub Back-End",
       },
     ],
-    body: "test body",
+    body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec semper mollis est, vitae porttitor sem vestibulum id. Vestibulum vitae sapien non mauris tempor placerat. In at erat nec nibh pulvinar iaculis. Cras elementum ligula urna, eget maximus sapien lobortis nec. Integer blandit nulla sed rutrum bibendum. Integer facilisis urna metus, et aliquet est molestie id. Quisque eu hendrerit tellus, id scelerisque elit. Suspendisse tempus libero mi, non consectetur odio scelerisque ac. Sed interdum tempor diam a pulvinar. Phasellus auctor fermentum orci vel aliquam.",
     video: null,
     prio: "L",
   },
