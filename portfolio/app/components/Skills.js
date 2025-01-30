@@ -4,8 +4,8 @@ export default function Skills() {
   const Skill = ({ skill }) => {
     return (
       <div className="basis-1/3 flex flex-col">
-        <h1>{skill.skill}</h1>
         <img className="w-28 m-auto" src={skill.image} />
+        <h1>{skill.skill}</h1>
       </div>
     );
   };
