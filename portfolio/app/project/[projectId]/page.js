@@ -9,6 +9,8 @@ import { useParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "@/firebaseConfig";
 
 export default function Page() {
   const param = useParams();
@@ -19,9 +21,20 @@ export default function Page() {
   const [selectedImage, setSelectedImage] = useState();
 
   useEffect(() => {
-    setProject(projects[param.projectId - 1]);
+    // setProject(projects[param.projectId - 1]);
+    getProject();
     setSelectedImage(0);
   }, []);
+
+  const getProject = async () => {
+    try {
+      const docSnap = await getDoc(doc(db, "projects", param.projectId));
+      // console.log(docSnap.data());
+      setProject(docSnap.data());
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const handleClick = (index) => {
     console.log(index);
@@ -94,10 +107,10 @@ export default function Page() {
                   <li className="inline-block mt-10" key={index}>
                     <Link
                       className="mx-2 p-2 rounded-md bg-slate-300 text-slate-700 hover:bg-slate-400"
-                      href={link?.src}
+                      href={link?.url}
                       target="_blank"
                     >
-                      {link?.type}
+                      {link?.name}
                     </Link>
                   </li>
                 );
