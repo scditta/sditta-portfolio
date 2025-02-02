@@ -8,6 +8,7 @@ import Image from "next/image";
 import { collection, getDocs } from "firebase/firestore";
 import { getDownloadURL, getStorage, ref } from "firebase/storage";
 import { db } from "@/firebaseConfig";
+import ProjectImage from "./ProjectImage";
 
 export default function Projects() {
   const router = useRouter();
@@ -37,52 +38,52 @@ export default function Projects() {
     getProjects();
   }, []);
 
-  const MainImage = ({ project }) => {
-    // console.log(project);
-    const [displayImg, setDisplayImg] = useState(null);
-    const [flag, setFlag] = useState(false);
+  // const MainImage = ({ project }) => {
+  //   // console.log(project);
+  //   const [displayImg, setDisplayImg] = useState(null);
+  //   const [flag, setFlag] = useState(false);
 
-    useEffect(() => {
-      handleProjectImage();
-    }, []);
+  //   useEffect(() => {
+  //     handleProjectImage();
+  //   }, []);
 
-    const handleProjectImage = async () => {
-      if (project?.images === undefined) {
-        return;
-      }
-      // console.log(project?.images[0]);
-      const storage = getStorage();
-      const imageRef = ref(storage, project?.images[0]);
-      // console.log(imageRef);
-      // console.log(imageRef.bucket);
-      await getDownloadURL(imageRef)
-        .then((url) => {
-          // console.log(url);
-          setDisplayImg(url);
-          setFlag(true);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    };
+  //   const handleProjectImage = async () => {
+  //     if (project?.images === undefined) {
+  //       return;
+  //     }
+  //     // console.log(project?.images[0]);
+  //     const storage = getStorage();
+  //     const imageRef = ref(storage, project?.images[0]);
+  //     // console.log(imageRef);
+  //     // console.log(imageRef.bucket);
+  //     await getDownloadURL(imageRef)
+  //       .then((url) => {
+  //         // console.log(url);
+  //         setDisplayImg(url);
+  //         setFlag(true);
+  //       })
+  //       .catch((err) => {
+  //         console.log(err);
+  //       });
+  //   };
 
-    if (flag) {
-      return (
-        <>
-          {project?.images && (
-            <Image
-              src={displayImg}
-              alt={project?.name}
-              fill={true}
-              className="object-cover absolute z-2"
-            />
-          )}
-        </>
-      );
-    } else {
-      return <>Loading...</>;
-    }
-  };
+  //   if (flag) {
+  //     return (
+  //       <>
+  //         {project?.images && (
+  //           <Image
+  //             src={displayImg}
+  //             alt={project?.name}
+  //             fill={true}
+  //             className="object-cover absolute z-2"
+  //           />
+  //         )}
+  //       </>
+  //     );
+  //   } else {
+  //     return <>Loading...</>;
+  //   }
+  // };
 
   const getProjects = async () => {
     let tempProjArr = [];
@@ -116,8 +117,11 @@ export default function Projects() {
                 )} border-[#714545] cursor-pointer group relative z-1`}
                 onClick={() => handleClick(project.id)}
               >
-                {/* {handleProjectImage(project)} */}
-                <MainImage project={project} />
+                <ProjectImage
+                  image={project.images[0]}
+                  className={"object-cover absolute z-2"}
+                  fill={true}
+                />
                 <div className="w-full h-full relative z-3">
                   <div className="absolute w-full h-full flex items-center">
                     <h1 className="z-3 w-full transition text-center text-xl font-bold group-hover:underline">

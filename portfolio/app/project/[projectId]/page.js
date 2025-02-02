@@ -12,6 +12,7 @@ import Link from "next/link";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "@/firebaseConfig";
 import { getDownloadURL, getStorage, ref } from "firebase/storage";
+import ProjectImage from "@/app/components/ProjectImage";
 
 export default function Page() {
   const param = useParams();
@@ -27,63 +28,81 @@ export default function Page() {
     // storeAllImages();
   }, []);
 
-  // const storeAllImages = () => {
-  //   console.log(project);
+  // const DisplayImage = ({ image, classN }) => {
+  //   const [displayImage, setDisplayImg] = useState(null);
+
+  //   useEffect(() => {
+  //     // console.log("second");
+  //     // handleProjectImage();
+  //   }, []);
+
+  //   const handleProjectImage = async () => {
+  //     // if (project?.images === undefined) {
+  //     //   return;
+  //     // }
+  //     // console.log(project?.images[0]);
+  //     const storage = getStorage();
+  //     const imageRef = ref(storage, image);
+  //     // console.log(imageRef);
+  //     // console.log(imageRef.bucket);
+  //     await getDownloadURL(imageRef)
+  //       .then((url) => {
+  //         setDisplayImg(url);
+  //       })
+  //       .catch((err) => {
+  //         console.log(err);
+  //       });
+  //   };
+
+  //   if (displayImage !== null) {
+  //     return (
+  //       <Image
+  //         src={displayImage}
+  //         alt={project?.name}
+  //         width={1000}
+  //         height={1000}
+  //         className={classN}
+  //       />
+  //     );
+  //   } else {
+  //     return <>Loading...</>;
+  //   }
   // };
-
-  const DisplayImage = ({ image, classN }) => {
-    const [displayImage, setDisplayImg] = useState(null);
-
-    useEffect(() => {
-      // console.log("second");
-      handleProjectImage();
-    }, []);
-
-    const handleProjectImage = async () => {
-      // if (project?.images === undefined) {
-      //   return;
-      // }
-      // console.log(project?.images[0]);
-      const storage = getStorage();
-      const imageRef = ref(storage, image);
-      // console.log(imageRef);
-      // console.log(imageRef.bucket);
-      await getDownloadURL(imageRef)
-        .then((url) => {
-          setDisplayImg(url);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    };
-
-    if (displayImage !== null) {
-      return (
-        <Image
-          src={displayImage}
-          alt={project?.name}
-          width={1000}
-          height={1000}
-          className={classN}
-        />
-      );
-    } else {
-      return <>Loading...</>;
-    }
-  };
 
   const getProject = async () => {
     try {
       const docSnap = await getDoc(doc(db, "projects", param.projectId));
       // console.log(docSnap.data());
       setProject(docSnap.data());
+      // storeAllImages(docSnap.data().images);
     } catch (err) {
       console.log(err);
     }
+    // console.log(docSnap);
+    // setProject(docSnap);
   };
 
-  const handleClick = (index, e) => {
-    // console.log(index);
+  // const storeAllImages = (images) => {
+  //   // console.log(images);
+  //   const storage = getStorage();
+
+  //   images.forEach(async (image) => {
+  //     const imageRef = ref(storage, image);
+  //     // console.log(imageRef);
+  //     // console.log(imageRef.bucket);
+  //     await getDownloadURL(imageRef)
+  //       .then((url) => {
+  //         console.log(url);
+  //         setfbImages((n) => [...n, url]);
+  //       })
+  //       .catch((err) => {
+  //         console.log(err);
+  //       });
+  //   });
+  // };
+
+  const handleClick = (index) => {
+    console.log(index);
     setSelectedImage(index);
   };
 
@@ -97,9 +116,14 @@ export default function Page() {
           <div className="w-1/2">
             <div className="my-3">
               {project?.images && (
-                <DisplayImage
+                // <DisplayImage
+                //   image={project?.images[selectedImage]}
+                //   classN={"w-full object-cover h-[32rem]"}
+                // />
+                <ProjectImage
                   image={project?.images[selectedImage]}
-                  classN={"w-full object-cover h-[32rem]"}
+                  className={"w-full object-cover h-[32rem]"}
+                  primaryImage={false}
                 />
               )}
             </div>
@@ -115,10 +139,15 @@ export default function Page() {
                         onClick={() => handleClick(index)}
                         key={index}
                       >
-                        <DisplayImage
+                        <ProjectImage
+                          image={img}
+                          className={"object-cover w-48 h-40"}
+                          primaryImage={false}
+                        />
+                        {/* <DisplayImage
                           image={img}
                           classN={"object-cover w-48 h-40"}
-                        />
+                        /> */}
                       </div>
                     );
                   })}
