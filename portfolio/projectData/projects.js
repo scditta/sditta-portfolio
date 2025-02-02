@@ -1,6 +1,6 @@
-import ROS_Image from "./images/ROS_Image.jpg";
-import LINNY from "./images/Linny.png";
-import GreenGrass from "./images/GreenGrass.jpg";
+// import ROS_Image from "./images/ROS_Image.jpg";
+// import LINNY from "./images/Linny.png";
+// import GreenGrass from "./images/GreenGrass.jpg";
 
 const projects = [
   {

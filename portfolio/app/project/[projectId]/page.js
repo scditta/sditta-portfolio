@@ -1,6 +1,6 @@
 "use client";
 
-import projects from "@/projectData/projects";
+// import projects from "@/projectData/projects";
 import Image from "next/image";
 
 import { IoMdCloseCircle } from "react-icons/io";
@@ -11,20 +11,66 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "@/firebaseConfig";
+import { getDownloadURL, getStorage, ref } from "firebase/storage";
 
 export default function Page() {
   const param = useParams();
   const router = useRouter();
 
   const [project, setProject] = useState({});
-  // const project = projects[param.projectId - 1];
-  const [selectedImage, setSelectedImage] = useState();
+  const [selectedImage, setSelectedImage] = useState(0);
 
   useEffect(() => {
     // setProject(projects[param.projectId - 1]);
     getProject();
     setSelectedImage(0);
+    // storeAllImages();
   }, []);
+
+  // const storeAllImages = () => {
+  //   console.log(project);
+  // };
+
+  const DisplayImage = ({ image, classN }) => {
+    const [displayImage, setDisplayImg] = useState(null);
+
+    useEffect(() => {
+      // console.log("second");
+      handleProjectImage();
+    }, []);
+
+    const handleProjectImage = async () => {
+      // if (project?.images === undefined) {
+      //   return;
+      // }
+      // console.log(project?.images[0]);
+      const storage = getStorage();
+      const imageRef = ref(storage, image);
+      // console.log(imageRef);
+      // console.log(imageRef.bucket);
+      await getDownloadURL(imageRef)
+        .then((url) => {
+          setDisplayImg(url);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+
+    if (displayImage !== null) {
+      return (
+        <Image
+          src={displayImage}
+          alt={project?.name}
+          width={1000}
+          height={1000}
+          className={classN}
+        />
+      );
+    } else {
+      return <>Loading...</>;
+    }
+  };
 
   const getProject = async () => {
     try {
@@ -36,8 +82,8 @@ export default function Page() {
     }
   };
 
-  const handleClick = (index) => {
-    console.log(index);
+  const handleClick = (index, e) => {
+    // console.log(index);
     setSelectedImage(index);
   };
 
@@ -50,18 +96,17 @@ export default function Page() {
         <div className="px-24 h-full flex items-center justify-center">
           <div className="w-1/2">
             <div className="my-3">
-              {project?.image && (
-                <Image
-                  src={project?.image[selectedImage]}
-                  alt={project?.name}
-                  className="w-full object-cover h-[32rem]"
+              {project?.images && (
+                <DisplayImage
+                  image={project?.images[selectedImage]}
+                  classN={"w-full object-cover h-[32rem]"}
                 />
               )}
             </div>
             <div className="w-full overflow-auto">
               <div className="w-fit flex flex-nowrap items-stretch">
-                {project?.image &&
-                  project.image.map((img, index) => {
+                {project?.images &&
+                  project?.images?.map((img, index) => {
                     return (
                       <div
                         className={`cursor-pointer border-4 w-48 hover:border-red-700 ${
@@ -70,10 +115,9 @@ export default function Page() {
                         onClick={() => handleClick(index)}
                         key={index}
                       >
-                        <Image
-                          src={img}
-                          alt={project?.name}
-                          className="object-cover w-48 h-40"
+                        <DisplayImage
+                          image={img}
+                          classN={"object-cover w-48 h-40"}
                         />
                       </div>
                     );

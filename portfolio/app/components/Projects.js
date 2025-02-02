@@ -37,12 +37,6 @@ export default function Projects() {
     getProjects();
   }, []);
 
-  // const getImage = (project) => {
-  //   // console.log(project);
-  //   // const storage = getStorage();
-  //   // const imageRef = ref(storage, projects.images.AdminView);
-  // };
-
   const MainImage = ({ project }) => {
     // console.log(project);
     const [displayImg, setDisplayImg] = useState(null);
@@ -88,36 +82,6 @@ export default function Projects() {
     } else {
       return <>Loading...</>;
     }
-  };
-
-  const handleProjectImage = (project) => {
-    if (project?.images === undefined) {
-      return <></>;
-    }
-    // console.log(project?.images[0]);
-    const storage = getStorage();
-    const imageRef = ref(storage, project?.images[0]);
-    // console.log(imageRef);
-    // console.log(imageRef.bucket);
-    getDownloadURL(imageRef)
-      .then((url) => {
-        console.log(url);
-        return (
-          <>
-            {project?.images && (
-              <Image
-                src={url}
-                alt={project?.name}
-                fill={true}
-                className="object-cover absolute z-2"
-              />
-            )}
-          </>
-        );
-      })
-      .catch((err) => {
-        console.log(err);
-      });
   };
 
   const getProjects = async () => {
