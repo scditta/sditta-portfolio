@@ -2,11 +2,7 @@
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
-// import projects from "@/projectData/projects";
-import Image from "next/image";
-
-import { collection, getDocs } from "firebase/firestore";
-import { getDownloadURL, getStorage, ref } from "firebase/storage";
+import { collection, getDocs, orderBy, query, where } from "firebase/firestore";
 import { db } from "@/firebaseConfig";
 import ProjectImage from "./ProjectImage";
 
@@ -38,61 +34,15 @@ export default function Projects() {
     getProjects();
   }, []);
 
-  // const MainImage = ({ project }) => {
-  //   // console.log(project);
-  //   const [displayImg, setDisplayImg] = useState(null);
-  //   const [flag, setFlag] = useState(false);
-
-  //   useEffect(() => {
-  //     handleProjectImage();
-  //   }, []);
-
-  //   const handleProjectImage = async () => {
-  //     if (project?.images === undefined) {
-  //       return;
-  //     }
-  //     // console.log(project?.images[0]);
-  //     const storage = getStorage();
-  //     const imageRef = ref(storage, project?.images[0]);
-  //     // console.log(imageRef);
-  //     // console.log(imageRef.bucket);
-  //     await getDownloadURL(imageRef)
-  //       .then((url) => {
-  //         // console.log(url);
-  //         setDisplayImg(url);
-  //         setFlag(true);
-  //       })
-  //       .catch((err) => {
-  //         console.log(err);
-  //       });
-  //   };
-
-  //   if (flag) {
-  //     return (
-  //       <>
-  //         {project?.images && (
-  //           <Image
-  //             src={displayImg}
-  //             alt={project?.name}
-  //             fill={true}
-  //             className="object-cover absolute z-2"
-  //           />
-  //         )}
-  //       </>
-  //     );
-  //   } else {
-  //     return <>Loading...</>;
-  //   }
-  // };
-
   const getProjects = async () => {
     let tempProjArr = [];
     try {
-      const querySnapshot = await getDocs(collection(db, "projects"));
+      const getProjects = collection(db, "projects");
+      const queryProjects = query(getProjects, orderBy("date", "desc"));
+
+      const querySnapshot = await getDocs(queryProjects);
+
       querySnapshot.forEach((project) => {
-        // console.log({ id: project.id, ...project.data() });
-        // setProjects();
-        // console.log(tempProjArr);
         tempProjArr.push({ ...project.data(), id: project.id });
       });
       setProjects(tempProjArr);
@@ -107,14 +57,13 @@ export default function Projects() {
         <h1 className="text-center pt-20 md:text-5xl sm:text-3xl text-xl">
           Projects
         </h1>
-        <div className="flex flex-wrap justify-center mt-20 mx-20 text-center">
+        <div className="flex flex-wrap flex-row mt-20 mx-20 text-center">
           {projects.map((project) => {
             return (
               <div
                 key={project.id}
-                className={`h-96 basis-${projectPrio(
-                  project?.prio
-                )} border-[#714545] cursor-pointer group relative z-1`}
+                // basis-${projectPrio(project?.prio)}
+                className={`h-96 basis-1/3 border-[#714545] cursor-pointer group relative z-1`}
                 onClick={() => handleClick(project.id)}
               >
                 <ProjectImage
