@@ -1,10 +1,10 @@
-"use client";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 
-import { collection, getDocs, orderBy, query, where } from "firebase/firestore";
+import { collection, getDocs, orderBy, query } from "firebase/firestore";
 import { db } from "@/firebaseConfig";
-import ProjectImage from "./ProjectImage";
+// import ProjectImage from "./ProjectImage";
+const ProjectImage = lazy(() => import("./ProjectImage"));
 
 export default function Projects() {
   const router = useRouter();
@@ -16,19 +16,19 @@ export default function Projects() {
     router.push(`project/${id}`);
   };
 
-  const projectPrio = (prio) => {
-    switch (prio.toUpperCase()) {
-      case "L":
-        return "1/2";
-        break;
-      case "M":
-        return "1/4";
-        break;
-      case "S":
-        return "1/6";
-        break;
-    }
-  };
+  // const projectPrio = (prio) => {
+  //   switch (prio.toUpperCase()) {
+  //     case "L":
+  //       return "1/2";
+  //       break;
+  //     case "M":
+  //       return "1/4";
+  //       break;
+  //     case "S":
+  //       return "1/6";
+  //       break;
+  //   }
+  // };
 
   useEffect(() => {
     getProjects();
@@ -60,26 +60,40 @@ export default function Projects() {
         <div className="flex flex-wrap flex-row mt-20 mx-20 text-center">
           {projects.map((project) => {
             return (
-              <div
+              <Suspense
                 key={project.id}
-                // basis-${projectPrio(project?.prio)}
-                className={`h-96 basis-1/3 border-[#714545] cursor-pointer group relative z-1`}
-                onClick={() => handleClick(project.id)}
-              >
-                <ProjectImage
-                  image={project.images[0]}
-                  className={"object-cover absolute z-2"}
-                  fill={true}
-                />
-                <div className="w-full h-full relative z-3">
-                  <div className="absolute w-full h-full flex items-center">
-                    <h1 className="z-3 w-full transition text-center text-xl font-bold group-hover:underline">
-                      {project?.name}
-                    </h1>
+                fallback={
+                  <div className={`h-96 basis-1/3 border-[#714545] z-1`}>
+                    <div className="w-full h-full relative z-3">
+                      <div className="absolute w-full h-full flex items-center">
+                        <h1 className="z-3 w-full transition text-center text-xl font-bold">
+                          Loading ...
+                        </h1>
+                      </div>
+                    </div>
                   </div>
-                  <div className="bg-[#1f1f1fbe] w-full h-full block group-hover:bg-[#111111ca]"></div>
+                }
+              >
+                <div
+                  // basis-${projectPrio(project?.prio)}
+                  className={`h-96 basis-1/3 border-[#714545] cursor-pointer group relative z-1`}
+                  onClick={() => handleClick(project.id)}
+                >
+                  <ProjectImage
+                    image={project.images[0]}
+                    className={"object-cover absolute z-2"}
+                    fill={true}
+                  />
+                  <div className="w-full h-full relative z-3">
+                    <div className="absolute w-full h-full flex items-center">
+                      <h1 className="z-3 w-full transition text-center text-xl font-bold group-hover:underline">
+                        {project?.name}
+                      </h1>
+                    </div>
+                    <div className="bg-[#1f1f1fbe] w-full h-full block group-hover:bg-[#111111ca]"></div>
+                  </div>
                 </div>
-              </div>
+              </Suspense>
             );
           })}
         </div>

@@ -20,8 +20,6 @@ export default function NavBar() {
   useEffect(() => {
     setHeight(window.self.innerHeight);
     setScrollPosition(window.scrollY);
-    // console.log(window.scrollY);
-    // console.log(window.self.innerHeight);
     window.addEventListener("scroll", handleScroll, { passive: true });
     setIsLoaded(true);
     return () => {
