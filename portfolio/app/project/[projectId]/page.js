@@ -64,8 +64,8 @@ export default function Page() {
                     project?.images?.map((img, index) => {
                       return (
                         <div
-                          className={`cursor-pointer border-4 w-48 hover:border-red-700 ${
-                            index === selectedImage ? "border-blue-700" : ""
+                          className={`cursor-pointer w-48 border-4 border-[#202020] hover:border-slate-600 ${
+                            index === selectedImage ? "border-red-800" : ""
                           }`}
                           onClick={() => handleClick(index)}
                           key={index}
@@ -124,7 +124,7 @@ export default function Page() {
         <div className="w-full fixed bottom-0 bg-[#202020]">
           <IoMdCloseCircle
             onClick={() => router.back()}
-            className="size-16 m-auto cursor-pointer hover:text-red-600"
+            className="size-16 m-auto cursor-pointer hover:text-slate-400"
           />
         </div>
       </div>

@@ -52,8 +52,8 @@ export default function Projects() {
   };
 
   return (
-    <section id="projects">
-      <div className="w-full h-screen">
+    <section id="projects" className="w-full">
+      <div className="w-full">
         <h1 className="text-center pt-20 md:text-5xl sm:text-3xl text-xl">
           Projects
         </h1>
@@ -79,11 +79,13 @@ export default function Projects() {
                   className={`h-96 basis-1/3 border-[#714545] cursor-pointer group relative z-1`}
                   onClick={() => handleClick(project.id)}
                 >
-                  <ProjectImage
-                    image={project.images[0]}
-                    className={"object-cover absolute z-2"}
-                    fill={true}
-                  />
+                  {project?.images && (
+                    <ProjectImage
+                      image={project.images[0]}
+                      className={"object-cover absolute z-2"}
+                      fill={true}
+                    />
+                  )}
                   <div className="w-full h-full relative z-3">
                     <div className="absolute w-full h-full flex items-center">
                       <h1 className="z-3 w-full transition text-center text-xl font-bold group-hover:underline">

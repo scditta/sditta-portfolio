@@ -4,7 +4,7 @@ export default function Page() {
   return (
     <>
       <section id="about">
-        <div className="w-full h-screen">
+        <div className="w-full h-screen flex flex-col">
           <h1 className="text-center pt-20 md:text-5xl sm:text-3xl text-xl">
             About Me
           </h1>
