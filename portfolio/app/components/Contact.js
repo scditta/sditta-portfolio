@@ -1,15 +1,44 @@
 import { useState } from "react";
 
-export default function Contact() {
-  const [message, setMessage] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
+const messageTemplate = {
+  name: "",
+  email: "",
+  message: "",
+};
 
-  const handleSubmit = (e) => {
+export default function Contact() {
+  const [message, setMessage] = useState(messageTemplate);
+  const [messageSent, setMessageSent] = useState(false);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(message);
+    // console.log(message);
+    await fetch(
+      "https://formsubmit.co/ajax/fcc1b77e6d0681469ef60ad7deaad6d6 ",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          name: message.name,
+          email: message.email,
+          message: message.message,
+        }),
+      }
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        // console.log(data);
+        setMessageSent(true);
+        // setTimeout(setMessageSent(false), 5000);
+        setMessage(messageTemplate);
+        // console.log(message);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const handleChange = (e) => {
@@ -25,6 +54,7 @@ export default function Contact() {
           <h1 className="text-center pt-20 md:text-5xl sm:text-3xl text-xl">
             Contact Me
           </h1>
+          {/* Update this formsubmit link once the new domain name and front-end server are officially set up */}
           <form
             className="flex justify-center flex-col w-3/4 h-full m-auto"
             onSubmit={handleSubmit}
@@ -38,8 +68,11 @@ export default function Contact() {
                   id="fName"
                   className="block w-1/2"
                   type="text"
+                  placeholder="Name..."
                   name="name"
                   onChange={handleChange}
+                  value={message.name}
+                  required
                 />
               </div>
               <div className="w-full my-5">
@@ -50,8 +83,11 @@ export default function Contact() {
                   id="email"
                   className="block w-1/2"
                   type="email"
+                  placeholder="Email..."
                   name="email"
                   onChange={handleChange}
+                  value={message.email}
+                  required
                 />
               </div>
               <div className="w-full my-5">
@@ -62,8 +98,11 @@ export default function Contact() {
                   id="message"
                   className="block w-full h-56"
                   type="text"
+                  placeholder="Message..."
                   name="message"
                   onChange={handleChange}
+                  value={message.message}
+                  required
                 />
               </div>
               <div className="text-center">
@@ -75,6 +114,7 @@ export default function Contact() {
               </div>
             </div>
           </form>
+          {messageSent ? <div>Your message was successfully sent!</div> : <></>}
         </div>
       </section>
     </>
