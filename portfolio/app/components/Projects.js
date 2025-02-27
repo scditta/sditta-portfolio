@@ -57,13 +57,15 @@ export default function Projects() {
         <h1 className="text-center pt-20 md:text-5xl sm:text-3xl text-xl">
           Projects
         </h1>
-        <div className="flex flex-wrap flex-row mt-20 mx-20 text-center">
+        <div className="grid md:grid-cols-3 sm:grid-cols-3 grid-cols-2 md:gap-5 sm:gap-5 gap-x-16 gap-y-4 place-items-center mt-20 mx-20 text-center">
           {projects.map((project) => {
             return (
               <Suspense
                 key={project.id}
                 fallback={
-                  <div className={`h-96 basis-1/3 border-[#714545] z-1`}>
+                  <div
+                    className={`size-32 sm:size-40 md:size-52 border-[#714545] z-1`}
+                  >
                     <div className="w-full h-full relative z-3">
                       <div className="absolute w-full h-full flex items-center">
                         <h1 className="z-3 w-full transition text-center text-xl font-bold">
@@ -76,7 +78,7 @@ export default function Projects() {
               >
                 <div
                   // basis-${projectPrio(project?.prio)}
-                  className={`h-96 basis-1/3 border-[#714545] cursor-pointer group relative z-1`}
+                  className={`size-32 sm:size-40 md:size-52 border-[#714545] cursor-pointer group relative z-1`}
                   onClick={() => handleClick(project.id)}
                 >
                   {project?.images && (
@@ -88,7 +90,7 @@ export default function Projects() {
                   )}
                   <div className="w-full h-full relative z-3">
                     <div className="absolute w-full h-full flex items-center">
-                      <h1 className="z-3 w-full transition text-center text-xl font-bold group-hover:underline">
+                      <h1 className="z-3 w-full transition text-center md:text-xl sm:text-base text-sm font-bold group-hover:underline">
                         {project?.name}
                       </h1>
                     </div>

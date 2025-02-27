@@ -1,15 +1,27 @@
 "use client";
 
+import Image from "next/image";
+
 export default function Page() {
   return (
     <>
       <section id="about">
-        <div className="w-full h-screen flex flex-col">
+        <div className="w-full h-full flex flex-col">
           <h1 className="text-center pt-20 md:text-5xl sm:text-3xl text-xl">
             About Me
           </h1>
-          <div className="flex justify-evenly m-auto">
-            <p className="w-1/3">
+          <div className="flex justify-evenly m-auto flex-col sm:flex-col md:flex-row">
+            <img
+              src="https://i.pinimg.com/736x/58/7b/57/587b57f888b1cdcc0e895cbdcfde1c1e.jpg"
+              className="w-full p-10 h-44 sm:w-full sm:h-auto md:h-auto md:w-1/3"
+            ></img>
+            {/* <Image
+              src="https://i.pinimg.com/736x/58/7b/57/587b57f888b1cdcc0e895cbdcfde1c1e.jpg"
+              alt="Profile Picture of Stephen Ditta"
+              fill
+            /> */}
+            {/* <div className="w-full p-10 h-96 sm:w-1/3 sm:h-auto bg-red-500"></div> */}
+            <p className="w-full p-10 sm:w-full md:w-1/3">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce in
               tortor id quam venenatis imperdiet. Mauris odio nunc, porttitor at
               nulla ac, blandit scelerisque nulla. Mauris non tortor ac quam
@@ -33,7 +45,6 @@ export default function Page() {
               scelerisque pulvinar. Nullam non urna eu felis volutpat dapibus
               non tincidunt risus.
             </p>
-            <div className="w-1/3 bg-red-500"></div>
           </div>
         </div>
       </section>

@@ -59,14 +59,14 @@ export default function Contact() {
             className="flex justify-center flex-col w-3/4 h-full m-auto"
             onSubmit={handleSubmit}
           >
-            <div className="h-1/2 p-10 bg-slate-800 rounded-md">
+            <div className="h-fit p-10 bg-slate-800 rounded-md">
               <div className="w-full my-5">
                 <label htmlFor="fName" className="block">
                   Name:
                 </label>
                 <input
                   id="fName"
-                  className="block w-1/2"
+                  className="block w-full md:w-1/2 sm:w-full p-1 text-black"
                   type="text"
                   placeholder="Name..."
                   name="name"
@@ -81,7 +81,7 @@ export default function Contact() {
                 </label>
                 <input
                   id="email"
-                  className="block w-1/2"
+                  className="block w-full md:w-1/2 sm:w-full p-1 text-black"
                   type="email"
                   placeholder="Email..."
                   name="email"
@@ -96,7 +96,7 @@ export default function Contact() {
                 </label>
                 <textarea
                   id="message"
-                  className="block w-full h-56"
+                  className="block w-full h-56 p-1 text-black resize-none"
                   type="text"
                   placeholder="Message..."
                   name="message"
