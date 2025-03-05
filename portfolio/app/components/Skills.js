@@ -3,7 +3,7 @@ import skills from "@/projectData/skills";
 export default function Skills() {
   const Skill = ({ skill }) => {
     return (
-      <div className="basis-1/3 flex flex-col">
+      <div className="">
         <img className="w-28 m-auto" src={skill.image} />
         <h1>{skill.skill}</h1>
       </div>
@@ -17,7 +17,8 @@ export default function Skills() {
           <h1 className="text-center pt-20 md:text-5xl sm:text-3xl text-xl">
             Skills
           </h1>
-          <div className="flex flex-wrap text-center h-full">
+          {/* flex flex-wrap text-center h-full */}
+          <div className="grid grid-cols-3 lg:gap-5 content-evenly gap-1 h-full text-center">
             {skills.map((skill) => {
               return <Skill key={skill.id} skill={skill} />;
             })}

@@ -6,6 +6,9 @@ import AboutMe from "./components/AboutMe";
 import Skills from "./components/Skills";
 import Projects from "./components/Projects";
 import Contact from "./components/Contact";
+import Link from "next/link";
+
+import { IoIosArrowDown } from "react-icons/io";
 
 export default function Home() {
   return (
@@ -24,8 +27,8 @@ export default function Home() {
                 strings={[
                   "Full Stack Developer",
                   "Front-End Developer",
-                  "React.js Developer",
-                  "3D Artist",
+                  "React Developer",
+                  "Artist",
                   "Fishing Enthusiast",
                 ]}
                 typeSpeed={100}
@@ -33,6 +36,11 @@ export default function Home() {
                 loop
               />
             </h1>
+          </div>
+          <div className="absolute w-full left-0 bottom-1/4">
+            <Link href="/#about" className="relative w-24">
+              <IoIosArrowDown className="relative m-auto text-5xl rounded-md text-slate-300 hover:hover:text-slate-400" />
+            </Link>
           </div>
         </div>
       </div>

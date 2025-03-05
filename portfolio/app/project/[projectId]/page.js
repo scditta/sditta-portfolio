@@ -46,9 +46,10 @@ export default function Page() {
         <h1 className="text-center md:text-5xl sm:text-3xl text-xl mt-10">
           {project?.name}
         </h1>
-        <div className="px-24 h-full flex items-center justify-center">
+        <div className="mx-10 h-full flex items-center lg:flex-row flex-col">
+          {/* Image View */}
           <Suspense fallback={<div>Loading ... </div>}>
-            <div className="w-1/2">
+            <div className="basis-1/2">
               <div className="my-3">
                 {project?.images && (
                   <ProjectImage
@@ -84,13 +85,14 @@ export default function Page() {
               </div>
             </div>
           </Suspense>
-          <div className="w-1/2 text-center">
-            <div className="m-10">
-              <h1>Description:</h1>
+          {/* Info */}
+          <div className="basis-1/2 md:h-1/2 lg:justify-between justify-around text-center flex flex-col lg:mx-5">
+            <span className="">
+              <h1 className="font-bold text-xl underline">Description:</h1>
               <p>{project?.body}</p>
-            </div>
-            <div className="m-10">
-              <h1>Tools:</h1>
+            </span>
+            <span className="">
+              <h1 className="font-bold text-xl underline">Tools:</h1>
               <ul>
                 {project?.skills?.map((skill, index) => {
                   return (
@@ -103,25 +105,28 @@ export default function Page() {
                   );
                 })}
               </ul>
-            </div>
-            <ul>
-              {project?.links?.map((link, index) => {
-                return (
-                  <li className="inline-block mt-10" key={index}>
-                    <Link
-                      className="mx-2 p-2 rounded-md bg-slate-300 text-slate-700 hover:bg-slate-400"
-                      href={link?.url}
-                      target="_blank"
-                    >
-                      {link?.name}
-                    </Link>
-                  </li>
-                );
-              })}
-            </ul>
+            </span>
+            <span>
+              <h1 className="font-bold text-xl underline">Links:</h1>
+              <ul className="mb-20 mt-2">
+                {project?.links?.map((link, index) => {
+                  return (
+                    <li className="inline-block" key={index}>
+                      <Link
+                        className="mx-2 p-2 rounded-md bg-slate-300 text-slate-700 hover:bg-slate-400"
+                        href={link?.url}
+                        target="_blank"
+                      >
+                        {link?.name}
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+            </span>
           </div>
         </div>
-        <div className="w-full fixed bottom-0 bg-[#202020]">
+        <div className="w-full h-auto fixed bottom-0 bg-[#202020]">
           <IoMdCloseCircle
             onClick={() => router.back()}
             className="size-16 m-auto cursor-pointer hover:text-slate-400"

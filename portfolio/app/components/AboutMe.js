@@ -5,15 +5,15 @@ import Image from "next/image";
 export default function Page() {
   return (
     <>
-      <section id="about">
-        <div className="w-full h-full flex flex-col">
+      <section id="about" className="">
+        <div className="w-full md:h-screen flex flex-col">
           <h1 className="text-center pt-20 md:text-5xl sm:text-3xl text-xl">
             About Me
           </h1>
-          <div className="flex justify-evenly m-auto flex-col sm:flex-col md:flex-row">
+          <div className="flex justify-center items-center h-3/4 m-auto flex-col sm:flex-col md:flex-col lg:flex-row">
             <img
               src="https://i.pinimg.com/736x/58/7b/57/587b57f888b1cdcc0e895cbdcfde1c1e.jpg"
-              className="w-full p-10 h-44 sm:w-full sm:h-auto md:h-auto md:w-1/3"
+              className="size-1/2 lg:p-10 lg:size-2/3 md:size-1/4 lg:basis-1/2"
             ></img>
             {/* <Image
               src="https://i.pinimg.com/736x/58/7b/57/587b57f888b1cdcc0e895cbdcfde1c1e.jpg"
@@ -21,29 +21,40 @@ export default function Page() {
               fill
             /> */}
             {/* <div className="w-full p-10 h-96 sm:w-1/3 sm:h-auto bg-red-500"></div> */}
-            <p className="w-full p-10 sm:w-full md:w-1/3">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce in
-              tortor id quam venenatis imperdiet. Mauris odio nunc, porttitor at
-              nulla ac, blandit scelerisque nulla. Mauris non tortor ac quam
-              pretium venenatis. Nam molestie nunc justo, tempus ullamcorper
-              massa ullamcorper sed. Morbi iaculis scelerisque eros. Etiam nec
-              ultricies mauris, eget vehicula libero. Vivamus non efficitur
-              dolor. Quisque tincidunt eros blandit sollicitudin cursus. Nunc
-              tincidunt libero at turpis semper, sit amet scelerisque mi
-              malesuada. Aenean luctus consequat risus, non tincidunt lectus
-              rutrum id. Nunc vitae posuere metus, id ultrices lectus.
-              Pellentesque habitant morbi tristique senectus et netus et
-              malesuada fames ac turpis egestas. Mauris eu odio a neque
-              scelerisque pharetra. Sed at tempus nisi. In venenatis nisi felis,
-              nec feugiat tortor imperdiet et. Etiam ut orci mollis, tincidunt
-              magna non, scelerisque enim. Phasellus facilisis sem quis erat
-              elementum ornare. Cras quis ipsum eget nisi hendrerit blandit vel
-              eget odio. Suspendisse egestas, eros sit amet suscipit auctor,
-              dolor lorem tempus lectus, quis feugiat eros turpis eget ligula.
-              Mauris eget mi ac dolor ultrices venenatis. Aenean tempor diam
-              cursus, ornare arcu at, malesuada lectus. Etiam in nunc ac mauris
-              scelerisque pulvinar. Nullam non urna eu felis volutpat dapibus
-              non tincidunt risus.
+            <p className="w-full p-10 sm:w-full md:w-fit lg:w-5/6">
+              Hi, I'm Stephen Ditta - a passionate software developer with a
+              love for building dynamic web and mobile applications that are
+              both functional and beautifully designed. I recently graduated
+              from the Honours Bachelor of Technology - Software Development
+              program at Seneca Polytechnic, where I honed my skills in
+              full-stack development, database management, and UI/UX design.
+              <br />
+              <br />
+              Over the years, I've had the chance to work on a range of
+              projects, from creating a Restaurant Ordering System using
+              React.js and MongoDB to developing a Car Renting Mobile App with
+              React Native and Firebase. These experiences taught me how to turn
+              ideas into fully realized applications that solve real problems.
+              <br />
+              <br />
+              I've also gained professional experience through co-op roles at
+              GroveWare Technologies and the Toronto Transit Commission (TTC).
+              There, I worked with technologies like PL/SQL, SQLite, and Google
+              APIs, while collaborating with teams in Agile environments to
+              build solutions that improved user experiences and system
+              performance.
+              <br />
+              <br />
+              On top of coding, I have a background in Interactive Media Design,
+              which helps me bring strong design fundamentals into my
+              development process. Whether it's front-end interfaces or back-end
+              logic, I'm always focused on creating user-friendly, efficient,
+              and visually appealing products.
+              <br />
+              <br />
+              When I'm not coding, you'll probably find me exploring new design
+              trends, experimenting with 3D modeling, or diving into the latest
+              tech tools.
             </p>
           </div>
         </div>
