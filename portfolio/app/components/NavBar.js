@@ -5,14 +5,11 @@ import { CiLinkedin } from "react-icons/ci";
 import { FaSdCard } from "react-icons/fa";
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 
 export default function NavBar() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [scrollPosition, setScrollPosition] = useState(0);
   const [height, setHeight] = useState(0);
-
-  const router = useRouter();
 
   const handleScroll = () => {
     const position = window.scrollY;
@@ -25,7 +22,6 @@ export default function NavBar() {
       top: 0,
       behavior: "smooth",
     });
-    // router.push("/");
   };
 
   useEffect(() => {
@@ -47,7 +43,6 @@ export default function NavBar() {
             : `absolute top-[${height}px]`
         } z-10`}
       >
-        {/* <Link className="flex basis-1/4 justify-center"> */}
         <div className="flex h-full basis-1/4 justify-center items-center">
           <FaSdCard className="w-20 cursor-pointer" onClick={scrollToTop} />
         </div>

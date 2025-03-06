@@ -57,7 +57,7 @@ export default function Projects() {
         <h1 className="text-center pt-20 md:text-5xl sm:text-3xl text-xl">
           Projects
         </h1>
-        <div className="grid md:grid-cols-3 sm:grid-cols-3 grid-cols-2 md:gap-10 sm:gap-5 gap-x-20 gap-y-4 place-items-center mt-5 mx-20 text-center">
+        <div className="grid xl:grid-cols-4 md:grid-cols-3 sm:grid-cols-3 grid-cols-2 md:gap-10 sm:gap-5 gap-x-20 gap-y-4 place-items-center mt-5 mx-20 text-center">
           {projects.map((project) => {
             return (
               <Suspense

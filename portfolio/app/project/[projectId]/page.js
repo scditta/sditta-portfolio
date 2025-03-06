@@ -27,12 +27,9 @@ export default function Page() {
       const docSnap = await getDoc(doc(db, "projects", param.projectId));
       // console.log(docSnap.data());
       setProject(docSnap.data());
-      // storeAllImages(docSnap.data().images);
     } catch (err) {
       console.log(err);
     }
-    // console.log(docSnap);
-    // setProject(docSnap);
   };
 
   const handleClick = (index) => {
@@ -54,7 +51,7 @@ export default function Page() {
                 {project?.images && (
                   <ProjectImage
                     image={project?.images[selectedImage]}
-                    className={"w-full object-cover h-[32rem]"}
+                    className={"w-fit object-contain h-fit"}
                     primaryImage={false}
                   />
                 )}

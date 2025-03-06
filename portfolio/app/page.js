@@ -10,6 +10,14 @@ import Link from "next/link";
 
 import { IoIosArrowDown } from "react-icons/io";
 
+const typedStrings = [
+  "Full Stack Developer",
+  "Front-End Developer",
+  "React Developer",
+  "Artist",
+  "Fishing Enthusiast",
+];
+
 export default function Home() {
   return (
     <>
@@ -24,13 +32,7 @@ export default function Home() {
               I am a
               <ReactTyped
                 className="pl-2 text-[#D43D3D]"
-                strings={[
-                  "Full Stack Developer",
-                  "Front-End Developer",
-                  "React Developer",
-                  "Artist",
-                  "Fishing Enthusiast",
-                ]}
+                strings={typedStrings}
                 typeSpeed={100}
                 backSpeed={100}
                 loop
