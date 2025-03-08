@@ -22,17 +22,17 @@ runConfig:
   # - variable: MY_SECRET
   #   secret: mySecretRef
 env:
-  - variable: API_KEY
+  - variable: NEXT_PUBLIC_api_key
     secret: api_key
-  - variable: AUTH_DOMAIN
+  - variable: NEXT_PUBLIC_auth_domain
     secret: auth_domain
-  - variable: PROJECT_ID
+  - variable: NEXT_PUBLIC_proj_id
     secret: project_id
-  - variable: STORAGE_BUCKET
+  - variable: NEXT_PUBLIC_storage_bucket
     secret: storage_bucket
-  - variable: MESSAGINS_SENDER_ID
+  - variable: NEXT_PUBLIC_messaging_sender_id
     secret: messagins_sender_id
-  - variable: APP_ID
+  - variable: NEXT_PUBLIC_app_id
     secret: app_id
-  - variable: MEASUREMENT_ID
+  - variable: NEXT_PUBLIC_measurement_id
     secret: measurement_id
