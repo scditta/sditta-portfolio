@@ -2,6 +2,8 @@
 
 import Image from "next/image";
 
+import SDITTAPORTRAIT from "@/app/data/images/MeFishingCatch.jpg";
+
 export default function Page() {
   return (
     <>
@@ -11,15 +13,13 @@ export default function Page() {
             About Me
           </h1>
           <div className="flex justify-center items-center h-3/4 m-auto flex-col sm:flex-col md:flex-col lg:flex-row">
-            <img
-              src="https://i.pinimg.com/736x/58/7b/57/587b57f888b1cdcc0e895cbdcfde1c1e.jpg"
-              className="size-1/2 lg:p-10 lg:size-2/3 md:size-1/4 lg:basis-1/2"
-            ></img>
-            {/* <Image
-              src="https://i.pinimg.com/736x/58/7b/57/587b57f888b1cdcc0e895cbdcfde1c1e.jpg"
+            <Image
+              src={SDITTAPORTRAIT}
               alt="Profile Picture of Stephen Ditta"
-              fill
-            /> */}
+              width={500}
+              height={500}
+              className=" lg:p-10 lg:size-2/3 lg:basis-1/2"
+            />
             {/* <div className="w-full p-10 h-96 sm:w-1/3 sm:h-auto bg-red-500"></div> */}
             <p className="w-full p-10 sm:w-full md:w-fit lg:w-5/6">
               Hi, I'm Stephen Ditta - a passionate software developer with a
