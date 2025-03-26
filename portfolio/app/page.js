@@ -14,7 +14,6 @@ const typedStrings = [
   "Full Stack Developer",
   "Front-End Developer",
   "React Developer",
-  "Artist",
   "Fishing Enthusiast",
 ];
 
