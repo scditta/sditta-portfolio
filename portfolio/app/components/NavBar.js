@@ -11,12 +11,6 @@ export default function NavBar() {
   const [scrollPosition, setScrollPosition] = useState(0);
   const [height, setHeight] = useState(0);
 
-  const handleScroll = () => {
-    const position = window.scrollY;
-    setScrollPosition(position);
-    // console.log("t -- ", scrollPosition);
-  };
-
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -25,8 +19,15 @@ export default function NavBar() {
   };
 
   useEffect(() => {
-    setHeight(window.self.innerHeight);
-    setScrollPosition(window.scrollY);
+    // setHeight(window.self.innerHeight);
+    // setScrollPosition(window.scrollY);
+    const handleScroll = () => {
+      const position = window.scrollY;
+      setScrollPosition(position);
+      setHeight(window.self.innerHeight);
+    };
+
+    handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
     setIsLoaded(true);
     return () => {
@@ -44,10 +45,17 @@ export default function NavBar() {
         } z-10`}
       >
         <div className="flex h-full basis-1/4 justify-center items-center">
-          <FaSdCard className="w-20 cursor-pointer" onClick={scrollToTop} />
+          <h1
+            className="text-5xl cursor-pointer hover:text-[#D43D3D]"
+            onClick={scrollToTop}
+          >
+            SD
+          </h1>
+          {/* <FaSdCard className="w-20 cursor-pointer" onClick={scrollToTop} /> */}
         </div>
+        <div className="h-14 bg-[#CFCFCF] w-0.5"></div>
         {/* </Link> */}
-        <div className="flex basis-3/4 h-full items-center justify-evenly">
+        <div className="flex basis-3/4 h-full items-center justify-evenly font-light">
           <Link
             href="/#about"
             className="hover:text-[#D43D3D] hover:cursor-pointer md:text-xl sm:text-base text-xs flex h-full items-center"
@@ -76,7 +84,7 @@ export default function NavBar() {
             scroll={false}
             href="https://github.com/scditta"
             target="_blank"
-            className="hover:text-[#D43D3D] hover:cursor-pointer md:text-xl sm:text-base text-xs flex h-full items-center"
+            className="hover:text-[#D43D3D] hover:cursor-pointer md:text-4xl sm:text-base text-xs flex h-full items-center"
           >
             <FaGithub />
           </Link>
@@ -84,7 +92,7 @@ export default function NavBar() {
             scroll={false}
             href="https://www.linkedin.com/in/stephen-ditta/"
             target="_blank"
-            className="hover:text-[#D43D3D] hover:cursor-pointer md:text-xl sm:text-base text-xs flex h-full items-center"
+            className="hover:text-[#D43D3D] hover:cursor-pointer md:text-4xl sm:text-base text-xs flex h-full items-center"
           >
             <CiLinkedin />
           </Link>
